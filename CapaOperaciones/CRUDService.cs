@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,11 @@ namespace CapaOperaciones
         public List<T> GetAll()
         {
             return db.Set<T>().ToList();
+        }
+
+        public List<T> GetAll(Expression<Func<T, bool>> expression)
+        {
+            return db.Set<T>().Where(expression).ToList();
         }
 
         /// <summary>
