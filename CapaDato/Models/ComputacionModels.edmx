@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ComputacionModels.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="ComputacionModelsStoreContainer">
+    <EntitySet Name="Facultades" EntityType="ComputacionModels.Store.Facultades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Carreras" EntityType="ComputacionModels.Store.Carreras" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Estudiantes" EntityType="ComputacionModels.Store.Estudiantes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OperadoraTelefonos" EntityType="ComputacionModels.Store.OperadoraTelefonos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DetalleEstudianteTelefonos" EntityType="ComputacionModels.Store.DetalleEstudianteTelefonos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FacultadCarrera" Association="ComputacionModels.Store.FacultadCarrera">
+      <End Role="Facultad" EntitySet="Facultades" />
+      <End Role="Carrera" EntitySet="Carreras" />
+    </AssociationSet>
+    <AssociationSet Name="CarreraEstudiante" Association="ComputacionModels.Store.CarreraEstudiante">
+      <End Role="Carrera" EntitySet="Carreras" />
+      <End Role="Estudiante" EntitySet="Estudiantes" />
+    </AssociationSet>
+    <AssociationSet Name="EstudianteDetalleEstudianteTelefono" Association="ComputacionModels.Store.EstudianteDetalleEstudianteTelefono">
+      <End Role="Estudiante" EntitySet="Estudiantes" />
+      <End Role="DetalleEstudianteTelefono" EntitySet="DetalleEstudianteTelefonos" />
+    </AssociationSet>
+    <AssociationSet Name="OperadoraTelefonoDetalleEstudianteTelefono" Association="ComputacionModels.Store.OperadoraTelefonoDetalleEstudianteTelefono">
+      <End Role="OperadoraTelefono" EntitySet="OperadoraTelefonos" />
+      <End Role="DetalleEstudianteTelefono" EntitySet="DetalleEstudianteTelefonos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Facultades">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Carreras">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AnioOfertada" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FacultadId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Estudiantes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Carnet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Apellido" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Edad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CarreraId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperadoraTelefonos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetalleEstudianteTelefonos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EstudianteId" Type="int" Nullable="false" />
+    <Property Name="OperadoraTelefonoId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FacultadCarrera">
+    <End Role="Facultad" Type="ComputacionModels.Store.Facultades" Multiplicity="1" />
+    <End Role="Carrera" Type="ComputacionModels.Store.Carreras" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facultad">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Carrera">
+        <PropertyRef Name="FacultadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CarreraEstudiante">
+    <End Role="Carrera" Type="ComputacionModels.Store.Carreras" Multiplicity="1" />
+    <End Role="Estudiante" Type="ComputacionModels.Store.Estudiantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carrera">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Estudiante">
+        <PropertyRef Name="CarreraId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="EstudianteDetalleEstudianteTelefono">
+    <End Role="Estudiante" Type="ComputacionModels.Store.Estudiantes" Multiplicity="1" />
+    <End Role="DetalleEstudianteTelefono" Type="ComputacionModels.Store.DetalleEstudianteTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Estudiante">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleEstudianteTelefono">
+        <PropertyRef Name="EstudianteId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OperadoraTelefonoDetalleEstudianteTelefono">
+    <End Role="OperadoraTelefono" Type="ComputacionModels.Store.OperadoraTelefonos" Multiplicity="1" />
+    <End Role="DetalleEstudianteTelefono" Type="ComputacionModels.Store.DetalleEstudianteTelefonos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperadoraTelefono">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DetalleEstudianteTelefono">
+        <PropertyRef Name="OperadoraTelefonoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ComputacionModels" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="ComputacionModelsContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Facultades" EntityType="ComputacionModels.Facultad" />
+          <EntitySet Name="Carreras" EntityType="ComputacionModels.Carrera" />
+          <EntitySet Name="Estudiantes" EntityType="ComputacionModels.Estudiante" />
+          <EntitySet Name="OperadoraTelefonos" EntityType="ComputacionModels.OperadoraTelefono" />
+          <EntitySet Name="DetalleEstudianteTelefonos" EntityType="ComputacionModels.DetalleEstudianteTelefono" />
+          <AssociationSet Name="FacultadCarrera" Association="ComputacionModels.FacultadCarrera">
+            <End Role="Facultad" EntitySet="Facultades" />
+            <End Role="Carrera" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="CarreraEstudiante" Association="ComputacionModels.CarreraEstudiante">
+            <End Role="Carrera" EntitySet="Carreras" />
+            <End Role="Estudiante" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="EstudianteDetalleEstudianteTelefono" Association="ComputacionModels.EstudianteDetalleEstudianteTelefono">
+            <End Role="Estudiante" EntitySet="Estudiantes" />
+            <End Role="DetalleEstudianteTelefono" EntitySet="DetalleEstudianteTelefonos" />
+          </AssociationSet>
+          <AssociationSet Name="OperadoraTelefonoDetalleEstudianteTelefono" Association="ComputacionModels.OperadoraTelefonoDetalleEstudianteTelefono">
+            <End Role="OperadoraTelefono" EntitySet="OperadoraTelefonos" />
+            <End Role="DetalleEstudianteTelefono" EntitySet="DetalleEstudianteTelefonos" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Carreras" Relationship="ComputacionModels.FacultadCarrera" FromRole="Facultad" ToRole="Carrera" />
+        </EntityType>
+        <EntityType Name="Carrera">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <Property Name="AnioOfertada" Type="String" Nullable="false" />
+          <NavigationProperty Name="Facultad" Relationship="ComputacionModels.FacultadCarrera" FromRole="Carrera" ToRole="Facultad" />
+          <Property Name="FacultadId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Estudiantes" Relationship="ComputacionModels.CarreraEstudiante" FromRole="Carrera" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Carnet" Type="String" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" />
+          <Property Name="Apellido" Type="String" Nullable="false" />
+          <Property Name="Edad" Type="String" Nullable="false" />
+          <NavigationProperty Name="Carrera" Relationship="ComputacionModels.CarreraEstudiante" FromRole="Estudiante" ToRole="Carrera" />
+          <Property Name="CarreraId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DetalleEstudianteTelefonos" Relationship="ComputacionModels.EstudianteDetalleEstudianteTelefono" FromRole="Estudiante" ToRole="DetalleEstudianteTelefono" />
+        </EntityType>
+        <EntityType Name="OperadoraTelefono">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Codigo" Type="String" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="DetalleEstudianteTelefonos" Relationship="ComputacionModels.OperadoraTelefonoDetalleEstudianteTelefono" FromRole="OperadoraTelefono" ToRole="DetalleEstudianteTelefono" />
+        </EntityType>
+        <EntityType Name="DetalleEstudianteTelefono">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="String" Nullable="false" />
+          <NavigationProperty Name="Estudiante" Relationship="ComputacionModels.EstudianteDetalleEstudianteTelefono" FromRole="DetalleEstudianteTelefono" ToRole="Estudiante" />
+          <Property Name="EstudianteId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OperadoraTelefono" Relationship="ComputacionModels.OperadoraTelefonoDetalleEstudianteTelefono" FromRole="DetalleEstudianteTelefono" ToRole="OperadoraTelefono" />
+          <Property Name="OperadoraTelefonoId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FacultadCarrera">
+          <End Type="ComputacionModels.Facultad" Role="Facultad" Multiplicity="1" />
+          <End Type="ComputacionModels.Carrera" Role="Carrera" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Carrera">
+              <PropertyRef Name="FacultadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CarreraEstudiante">
+          <End Type="ComputacionModels.Carrera" Role="Carrera" Multiplicity="1" />
+          <End Type="ComputacionModels.Estudiante" Role="Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carrera">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="CarreraId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EstudianteDetalleEstudianteTelefono">
+          <End Type="ComputacionModels.Estudiante" Role="Estudiante" Multiplicity="1" />
+          <End Type="ComputacionModels.DetalleEstudianteTelefono" Role="DetalleEstudianteTelefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleEstudianteTelefono">
+              <PropertyRef Name="EstudianteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OperadoraTelefonoDetalleEstudianteTelefono">
+          <End Type="ComputacionModels.OperadoraTelefono" Role="OperadoraTelefono" Multiplicity="1" />
+          <End Type="ComputacionModels.DetalleEstudianteTelefono" Role="DetalleEstudianteTelefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperadoraTelefono">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetalleEstudianteTelefono">
+              <PropertyRef Name="OperadoraTelefonoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComputacionModelsStoreContainer" CdmEntityContainer="ComputacionModelsContainer">
+    <EntitySetMapping Name="Facultades">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputacionModels.Facultad)">
+        <MappingFragment StoreEntitySet="Facultades">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carreras">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputacionModels.Carrera)">
+        <MappingFragment StoreEntitySet="Carreras">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="AnioOfertada" ColumnName="AnioOfertada" />
+          <ScalarProperty Name="FacultadId" ColumnName="FacultadId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estudiantes">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputacionModels.Estudiante)">
+        <MappingFragment StoreEntitySet="Estudiantes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Carnet" ColumnName="Carnet" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Edad" ColumnName="Edad" />
+          <ScalarProperty Name="CarreraId" ColumnName="CarreraId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OperadoraTelefonos">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputacionModels.OperadoraTelefono)">
+        <MappingFragment StoreEntitySet="OperadoraTelefonos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleEstudianteTelefonos">
+      <EntityTypeMapping TypeName="IsTypeOf(ComputacionModels.DetalleEstudianteTelefono)">
+        <MappingFragment StoreEntitySet="DetalleEstudianteTelefonos">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Numero" ColumnName="Numero" />
+          <ScalarProperty Name="EstudianteId" ColumnName="EstudianteId" />
+          <ScalarProperty Name="OperadoraTelefonoId" ColumnName="OperadoraTelefonoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="65d14c82afc842de9029de53ff0aa1b3" Name="Diagram1" >
+        <EntityTypeShape EntityType="ComputacionModels.Facultad" Width="1.5" PointX="0.5" PointY="1" />
+        <EntityTypeShape EntityType="ComputacionModels.Carrera" Width="1.5" PointX="2.875" PointY="0.75" />
+        <EntityTypeShape EntityType="ComputacionModels.Estudiante" Width="1.75" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="ComputacionModels.OperadoraTelefono" Width="2" PointX="8.125" PointY="3.875" />
+        <EntityTypeShape EntityType="ComputacionModels.DetalleEstudianteTelefono" Width="2.125" PointX="7.875" PointY="0.75" />
+        <AssociationConnector Association="ComputacionModels.FacultadCarrera" />
+        <AssociationConnector Association="ComputacionModels.CarreraEstudiante" />
+        <AssociationConnector Association="ComputacionModels.EstudianteDetalleEstudianteTelefono" />
+        <AssociationConnector Association="ComputacionModels.OperadoraTelefonoDetalleEstudianteTelefono" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
