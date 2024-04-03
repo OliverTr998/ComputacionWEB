@@ -1,0 +1,33 @@
+﻿@model List<CapaDato.Models.Facultad>
+
+@{
+    ViewBag.Title = "Index";
+    string descripcion = "Facultades";
+    int i = 1;
+}
+
+<h2>@descripcion</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr class="success">
+            <th class="text-center">#</th>
+            <th class="text-center">Codigo</th>
+            <th class="text-center">Descripcion</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center"><strong>@i</strong></td>
+                <td>@item.Codigo</td>
+                <td>@item.Descripcion</td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
