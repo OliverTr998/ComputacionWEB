@@ -52,6 +52,7 @@
     <Compile Include="CRUDService.cs" />
     <Compile Include="EstudianteService.cs" />
     <Compile Include="FacultadService.cs" />
+    <Compile Include="OperadoraTelefonoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

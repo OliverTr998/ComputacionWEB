@@ -53,6 +53,7 @@ namespace CapaOperaciones
             db.Entry(entidad).State = EntityState.Modified;
 
             db.SaveChanges();
+
         }
 
         /// <summary>
@@ -69,5 +70,15 @@ namespace CapaOperaciones
             return db.SaveChanges() > 0;
         }
 
+        /// <summary>
+        /// Funicon para eliminar un registro de una entidad
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public T BuscarId(int id)
+        {
+            var entidad = db.Set<T>().Find(id);
+            return entidad;
+        }
     }
 }

@@ -1,0 +1,55 @@
+﻿@model List<CapaDato.Models.OperadoraTelefono>
+
+@{
+    ViewBag.Title = "Index";
+    string descripcion = "Operadoras De Teléfonos";
+    int i = 1;
+}
+
+<br>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h4 class="text-center"><strong>@descripcion</strong></h4>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ActionLink("+ Agregar", "Agregar", "OperadoraTelefono", new { @class = "btn btn-primary" })
+            </div>
+        </div>
+
+        <hr>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr class="info">
+                    <th class="text-center">#</th>
+                    <th class="text-center">Codigo</th>
+                    <th class="text-center">Descripcion</th>
+                    <th class="text-center">Actiones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-center"><strong>@i</strong></td>
+                        <td>@item.Codigo</td>
+                        <td>@item.Descripcion</td>
+                        <td class="text-center">
+                            <div class="btn-group" role="group" aria-label="...">
+                                @Html.ActionLink(" ", "Editar", "OperadoraTelefono", new { id = item.Id }, new { @class = "glyphicon glyphicon-edit btn btn-success btn-sm" })
+                                @Html.ActionLink(" ", "Eliminar", "OperadoraTelefono", new { id = item.Id }, new { @class = "glyphicon glyphicon-trash btn btn-danger btn-sm" })
+                                @Html.ActionLink(" ", "Detalle", "OperadoraTelefono", new { id = item.Id }, new { @class = "glyphicon glyphicon-info-sign btn btn-info btn-sm" })
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
