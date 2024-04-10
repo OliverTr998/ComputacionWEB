@@ -43,15 +43,13 @@ namespace CapaOperaciones
         public string ValidarAntesActualizar(OperadoraTelefono operadoraTelefono)
         {
             var operadoraDb = db.OperadoraTelefonos.Find(operadoraTelefono.Id);
+            db.Entry(operadoraDb).State = EntityState.Detached;
 
             if (operadoraDb == null)
                 return "La operadora a modificar ya no existe en el sistema";
 
             if (operadoraDb.Codigo == operadoraTelefono.Codigo)
-            {
-                db.Entry(operadoraDb).State = EntityState.Detached;
                 return string.Empty;
-            }
 
             return ValidarAntesCrear(operadoraTelefono);
         }

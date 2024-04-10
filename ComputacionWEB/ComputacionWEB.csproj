@@ -242,6 +242,8 @@
     <Content Include="Views\OperadoraTelefono\Agregar.cshtml" />
     <Content Include="Views\OperadoraTelefono\Editar.cshtml" />
     <Content Include="Views\OperadoraTelefono\Eliminar.cshtml" />
+    <Content Include="Views\Facultad\Crear.cshtml" />
+    <Content Include="Views\Facultad\Editar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

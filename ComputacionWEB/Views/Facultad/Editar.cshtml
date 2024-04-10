@@ -1,0 +1,51 @@
+﻿@model CapaDato.Models.Facultad
+
+@{
+    ViewBag.Title = "Editar Facultad";
+}
+
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h4 class="text-center"><strong>@ViewBag.Title</strong></h4>
+            </div>
+
+            <div class="panel-body">
+                @using (Html.BeginForm("Editar", "Facultad", FormMethod.Post, htmlAttributes: new { @id = "formFacultad" }))
+                {
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.Codigo)
+                        @Html.TextBoxFor(s => s.Codigo, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.Codigo, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(s => s.Descripcion)
+                        @Html.TextBoxFor(s => s.Descripcion, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(s => s.Descripcion, "", htmlAttributes: new { @class = "text-danger" })
+                    </div>
+
+                    if (ViewBag.ErrorMensaje != null)
+                    {
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>@ViewBag.ErrorMensaje</strong>
+                            </div>
+                        </div>
+                    }
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.ActionLink(" Regresar", "Index", "Facultad", htmlAttributes: new { @class = "btn btn-primary btn-block" })
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success btn-block"><i class="glyphicon glyphicon-edit"></i> Editar</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

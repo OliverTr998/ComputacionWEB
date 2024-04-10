@@ -29,7 +29,7 @@ namespace CapaOperaciones
         public string ValidarAntesCrear(Facultad facultad)
         {
             if (db.Facultades.Any(x => x.Codigo.Trim().ToLower() == facultad.Codigo.Trim().ToLower()))
-                return "existe un codigo igual en las Facultades";
+                return "Ya existe un codigo igual en las Facultades";
 
             return string.Empty;
         }
@@ -42,6 +42,7 @@ namespace CapaOperaciones
         public string ValidarAntesActualizar(Facultad facultad)
         {
             var facultadDb = db.Facultades.Find(facultad.Id);
+            db.Entry(facultadDb).State = System.Data.Entity.EntityState.Detached;
 
             if (facultadDb == null)
                 return "La facultad a modificar ya no existe en el sistema";

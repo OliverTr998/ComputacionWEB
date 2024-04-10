@@ -11,7 +11,8 @@ namespace CapaDato.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Facultad
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,17 @@ namespace CapaDato.Models
         {
             this.Carreras = new HashSet<Carrera>();
         }
-    
+
         public int Id { get; set; }
+
+        [Display(Name ="Código")]
+        [Required(ErrorMessage ="El campo {0} es requirido")]
+        [StringLength(10, ErrorMessage ="El campo {0} no puede exceder los {1} caracteres")]
         public string Codigo { get; set; }
+
+
+        [Display(Name = "Descripcion")]
+        [Required(ErrorMessage = "El campo {0} es requirido")]
         public string Descripcion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

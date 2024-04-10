@@ -6,28 +6,51 @@
     int i = 1;
 }
 
-<h2>@descripcion</h2>
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h4 class="text-center"><strong>@descripcion</strong></h4>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ActionLink("+ Agregar","Crear", "Facultad", htmlAttributes: new { @class="btn btn-primary"})
+                    </div>
+                </div>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <th class="text-center">#</th>
+                            <th class="text-center">Codigo</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
 
-<table class="table table-bordered">
-    <thead>
-        <tr class="success">
-            <th class="text-center">#</th>
-            <th class="text-center">Codigo</th>
-            <th class="text-center">Descripcion</th>
-        </tr>
-    </thead>
+                    <tbody>
 
-    <tbody>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td class="text-center"><strong>@i</strong></td>
-                <td>@item.Codigo</td>
-                <td>@item.Descripcion</td>
-            </tr>
-            i++;
-        }
-    </tbody>
-</table>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="text-center"><strong>@i</strong></td>
+                                <td>@item.Codigo</td>
+                                <td>@item.Descripcion</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        @Html.ActionLink(" ", "Editar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-edit" })
+                                        @Html.ActionLink(" ", "Eliminar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                                    </div>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
