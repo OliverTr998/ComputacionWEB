@@ -99,5 +99,41 @@ namespace ComputacionWEB.Controllers
                 return View(facultad);
             }
         }
+
+        [HttpGet]
+        public ActionResult Eliminar(int id)
+        {
+            var facultad = facultadService.BuscarId(id);
+
+            if (facultad == null)
+                return RedirectToAction("Index");
+
+            return View(facultad);
+        }
+
+        [HttpPost]
+        public ActionResult Eliminar(Facultad facultad)
+        {
+            try
+            {
+                var errorMensaje = facultadService.ValidarAntesEliminar(facultad.Id);
+                if (string.IsNullOrEmpty(errorMensaje))
+                {
+                    if (facultadService.Eliminar(facultad.Id))
+                        return RedirectToAction("Index");
+
+                    ViewBag.ErrorMensaje = "Error servidor, Contactar al alministrador";
+                    return View(facultad);
+                }
+
+                ViewBag.ErrorMensaje = errorMensaje;
+                return View(facultad);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.ErrorMensaje = "Error servidor, Contactar al alministrador";
+                return View(facultad);
+            }
+        }
     }
 }

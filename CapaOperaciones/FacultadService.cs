@@ -61,6 +61,7 @@ namespace CapaOperaciones
         public string ValidarAntesEliminar(int id)
         {
             var facultadDb = db.Facultades.Find(id);
+            db.Entry(facultadDb).State = System.Data.Entity.EntityState.Detached;
 
             if (facultadDb == null)
                 return "La facultad a modificar ya no existe en el sistema";
