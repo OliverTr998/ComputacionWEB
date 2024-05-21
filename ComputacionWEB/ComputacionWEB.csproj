@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarreraController.cs" />
     <Compile Include="Controllers\FacultadController.cs" />
+    <Compile Include="Controllers\FacultadKController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OperadoraTelefonoController.cs" />
@@ -183,26 +184,66 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.rtl.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.rtl.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.rtl.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.min.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.rtl.css" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.rtl.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.4.1.js" />
-    <Content Include="Scripts\jquery-3.4.1.min.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.js" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Creados\FacultadK\IndexFacultad.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.bundle.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.esm.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.esm.min.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.min.js.map" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.js.map" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.esm.min.js.map" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.esm.js.map" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\Externos\Bootstrap\bootstrap.bundle.js.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.rtl.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.rtl.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.rtl.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.rtl.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-utilities.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.rtl.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.rtl.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-reboot.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.rtl.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.rtl.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.css.map" />
+    <None Include="Scripts\Externos\Jquery\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\Externos\Jquery\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery.validate.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery.validate.min.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\Externos\Jquery\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Externos\Knockout\knockout-3.5.1.debug.js" />
+    <Content Include="Scripts\Externos\Knockout\knockout-3.5.1.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -248,22 +289,16 @@
     <Content Include="Views\Facultad\Eliminar.cshtml" />
     <Content Include="Views\Carrera\Index.cshtml" />
     <Content Include="Views\Carrera\Crear.cshtml" />
+    <Content Include="Views\FacultadK\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Creados\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.4.1.min.map" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\Externos\Jquery\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -272,6 +307,10 @@
     <ProjectReference Include="..\CapaDato\CapaDato.csproj">
       <Project>{25eece7e-07fa-47a5-836b-c0ee37700e01}</Project>
       <Name>CapaDato</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaDTO\CapaDTO.csproj">
+      <Project>{f287b80e-a390-4bfa-912d-c7da7546d72e}</Project>
+      <Name>CapaDTO</Name>
     </ProjectReference>
     <ProjectReference Include="..\CapaOperaciones\CapaOperaciones.csproj">
       <Project>{6a74506d-d481-4186-8ae0-84c25d3b2781}</Project>

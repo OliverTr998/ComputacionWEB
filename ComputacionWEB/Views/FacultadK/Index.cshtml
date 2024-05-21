@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "Facultad K";
+}
+
+@Html.Hidden("JsonData")
+
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header bg-primary">
+                <h4 class="text-center"><strong data-bind="text: Titulo"></strong></h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @Html.ActionLink("+ Agregar", "Crear", "Facultad", htmlAttributes: new { @class = "btn btn-primary" })
+                        <button class="btn btn-success" data-bind="click: $root.GetFacultadesAPI">Refrescar</button>
+                    </div>
+                </div>
+                <hr>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="success">
+                            <th class="text-center">#</th>
+                            <th class="text-center">Codigo</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+
+                    <tbody data-bind="foreach: Facultades">
+                        <tr>
+                            <td class="text-center"><strong data-bind="text: $index()+1"></strong></td>
+                            <td data-bind="text: Codigo"></td>
+                            <td data-bind="text: Descripcion"></td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    @*@Html.ActionLink(" ", "Editar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-edit" })
+                                    @Html.ActionLink(" ", "Eliminar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })*@
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/Scripts/Creados/FacultadK/IndexFacultad.js"></script>
+}
