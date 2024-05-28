@@ -23,8 +23,12 @@ namespace ComputacionWEB
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/Externos/Bootstrap/bootstrap.min.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+            //          "~/Scripts/Externos/Bootstrap/bootstrap.min.js"));
+
+            bundles.Add(new Bundle("~/bundles/bootstrapJS").Include(
+                       "~/Scripts/Externos/Bootstrap/bootstrap.js"
+                       ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Externos/Bootstrsap/bootstrap.min.css",

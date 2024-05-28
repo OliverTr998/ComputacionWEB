@@ -11,7 +11,8 @@ namespace CapaDato.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Estudiante
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,10 +22,26 @@ namespace CapaDato.Models
         }
     
         public int Id { get; set; }
+
+
+        [Required(ErrorMessage ="El campo {0} es requerido")]
         public string Carnet { get; set; }
+
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Nombre { get; set; }
+
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Apellido { get; set; }
+
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
         public string Edad { get; set; }
+
+
+        [Required(ErrorMessage = "El campo {0} es requerido")]
+        [Display(Name ="Carrera")]
         public int CarreraId { get; set; }
     
         public virtual Carrera Carrera { get; set; }

@@ -1,47 +1,56 @@
-﻿class IndexFacultad {
+﻿class FacultadVM {
+    constructor(data) {
+        data = data || {};
+
+        self.Id = ko.observable(data.Id || "");
+        self.Codigo = ko.observable(data.Codigo || "");
+        self.Descripcion = ko.observable(data.Descripcion || "");
+    }
+}
+
+class IndexFacultad {
     constructor(data) {
         data = data || {};
         var self = this;
 
         self.Titulo = ko.observable("Facultades");
 
+        self.CargandoPeticion = ko.observable(false);
+
+        self.FiltroNombreFacultad = ko.observable("");
+
+        self.RegistroSeleccionado = ko.observable(new FacultadVM());
+
         self.Facultades = ko.observableArray(data.Facultades || []);
 
-        self.GetFacultadesAPI = ()=>{
+        self.GetFacultadesAPI = () => {
             GetFacultadesAPI();
         };
 
+        self.ShowModal = (data) => {
+            self.RegistroSeleccionado(new FacultadVM(ko.toJS(data)));
+        };
+
         function GetFacultadesAPI() {
-            let input = $("#root-url-input");
-            let value = input.val();
-
-            let url = value + "FacultadK/GetFacultades"
-
+            let rootUrl = $("#root-url-input").val();
+            let url = rootUrl + "FacultadK/GetFacultades";
+            
             return $.ajax({
                 url: url,
                 method: "GET",
-                data: {},
+                data: { nombreFacultad: self.FiltroNombreFacultad() },
                 dataType: "json",
                 beforeSend: (jqXHR, settings) => {  // Peticion en curso
-                    console.log("beforeSend");
-                    console.log(jqXHR);
-                    console.log(settings);
+                    self.CargandoPeticion(true);
                 },
-                success: (respuesta)=>{
-                    console.log("Respuesta");
-                    console.log(respuesta);
-
+                success: (respuesta) => {
+                    self.Facultades(respuesta);
                 },
-                complete: (jqXHR, textStatus)=>{
-                    console.log("complete");
-                    console.log(jqXHR);
-                    console.log(textStatus);
+                complete: (jqXHR, textStatus) => {
+                    self.CargandoPeticion(false);
                 },
-                error: (jqXHR, textStatus, errorThrown)=>{
-                    console.log("Error");
-                    console.log(jqXHR);
-                    console.log(textStatus);
-                    console.log(errorThrown);
+                error: (jqXHR, textStatus, errorThrown) => {
+                    alert("Error: Error De Servidor");
                 }
             });
         }

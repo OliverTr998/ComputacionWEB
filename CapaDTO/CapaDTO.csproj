@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CapaDTO</RootNamespace>
     <AssemblyName>CapaDTO</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CapaDato">
+      <HintPath>..\CapaDato\bin\Debug\CapaDato.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,8 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacultadDTO.cs" />
+    <Compile Include="DTO\CarreraDTO.cs" />
+    <Compile Include="DTO\DetalleEstudianteTelefonoDTO.cs" />
+    <Compile Include="DTO\EstudianteDTO.cs" />
+    <Compile Include="DTO\FacultadDTO.cs" />
+    <Compile Include="DTO\OperadoraTelefonoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\RequestResult.cs" />
+    <Compile Include="Utilities\SystemMessage.cs" />
+    <Compile Include="ViewModel\IndexEstudianteVM.cs" />
+    <Compile Include="ViewModel\IndexFacultadVM.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

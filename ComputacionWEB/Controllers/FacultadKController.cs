@@ -1,5 +1,6 @@
 ﻿using CapaDato.Models;
-using CapaDTO;
+using CapaDTO.DTO;
+using CapaDTO.ViewModel;
 using CapaOperaciones;
 using Newtonsoft.Json;
 using System;
@@ -28,17 +29,32 @@ namespace ComputacionWEB.Controllers
                 Id = x.Id,
                 Codigo = x.Codigo,
                 Descripcion = x.Descripcion,
-            });
+            }).ToList();
 
-            ViewBag.JsonData = JsonConvert.SerializeObject(new { Facultades = facultades });
+            var indexFacultad = new IndexFacultadVM();
+            indexFacultad.Facultades = facultades;
+
+            ViewBag.JsonData = JsonConvert.SerializeObject(indexFacultad);
 
             return View();
         }
 
         [HttpGet]
-        public JsonResult GetFacultades()
+        public JsonResult GetFacultades(string nombreFacultad)
         {
-            return Json("Hola Mundo", JsonRequestBehavior.AllowGet);
+            var facultades = facultadService.GetAll().Select(x => new FacultadDTO
+            {
+                Id = x.Id,
+                Codigo = x.Codigo,
+                Descripcion = x.Descripcion,
+            }).ToList();
+
+            if (!string.IsNullOrEmpty(nombreFacultad))
+            {
+                facultades = facultades.Where(x => x.Descripcion.Trim().ToLower().Contains(nombreFacultad.Trim().ToLower())).ToList();
+            }
+
+            return Json(facultades, JsonRequestBehavior.AllowGet);
         }
     }
 }

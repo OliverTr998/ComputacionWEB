@@ -1,4 +1,5 @@
 ﻿using CapaDato.Models;
+using CapaDTO.DTO;
 using CapaOperaciones;
 using System;
 using System.Collections.Generic;
@@ -20,33 +21,23 @@ namespace CapaOperaciones
                 this.db = db;
         }
 
-        //public List<Estudiante> GetAll()
-        //{
-        //    return db.Estudiantes.ToList();
-        //}
+        public List<EstudianteDTO> GetEstudiantes()
+        {
+            var query = db.Estudiantes.Select(x => new EstudianteDTO
+            {
+                Id = x.Id,
+                Carnet = x.Carnet,
+                Nombre = x.Nombre,
+                Apellido = x.Apellido,
+                Edad = x.Apellido,
+                CarreraId = x.CarreraId,
 
-        //public bool Crear(Estudiante estudiante)
-        //{
-        //    db.Entry(estudiante).State = System.Data.Entity.EntityState.Added;
-        //    //db.Estudiantes.Add(estudiante);
-        //    return db.SaveChanges() > 0;
-        //}
+                //propiedad extra
+                DescripcionCarrera = x.Carrera.Descripcion
+            }).ToList();
 
-        //public bool Eliminar(int id)
-        //{
-        //    var estudiantedb = db.Estudiantes.Find(id);
-
-        //    db.Entry(estudiantedb).State = System.Data.Entity.EntityState.Deleted;
-
-        //    return db.SaveChanges() > 0;
-        //}
-
-        //public void Actualizar(Estudiante estudiante)
-        //{
-        //    db.Entry(estudiante).State = System.Data.Entity.EntityState.Modified;
-
-        //    db.SaveChanges();
-        //}
+            return query;
+        }
 
         /// <summary>
         /// Validaciones antes de crear un nuevo registro

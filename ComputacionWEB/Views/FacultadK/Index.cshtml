@@ -10,7 +10,7 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-header bg-primary">
-                <h4 class="text-center"><strong data-bind="text: Titulo"></strong></h4>
+                <h4 class="text-center text-white"><strong data-bind="text: Titulo"></strong></h4>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -20,8 +20,17 @@
                     </div>
                 </div>
                 <hr>
+                <div class="row mb-2">
+                    <div class="col-10">
+                        <input type="text" placeholder="Nombre Facultad" class="form-control" data-bind="value: FiltroNombreFacultad">
+                    </div>
+                    <div class="col-2 d-grid">
+                        <button data-bind="click: GetFacultadesAPI" class="btn btn-info">Filtrar</button>
+                    </div>
+                </div>
+                <!--ko ifnot: CargandoPeticion-->
                 <table class="table table-bordered">
-                    <thead>
+                    <thead class="bg-secondary text-white">
                         <tr class="success">
                             <th class="text-center">#</th>
                             <th class="text-center">Codigo</th>
@@ -37,17 +46,75 @@
                             <td data-bind="text: Descripcion"></td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    @*@Html.ActionLink(" ", "Editar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-success glyphicon glyphicon-edit" })
-                                    @Html.ActionLink(" ", "Eliminar", "Facultad", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-danger glyphicon glyphicon-trash" })*@
+                                    <button data-bind="click: $root.ShowModal" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-outline-success">Editar</button>
+                                    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-sm btn-outline-danger">Eliminar</button>
                                 </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <!--/ko-->
+                <!--ko if: CargandoPeticion-->
+                <h1 class="text-success text-center">Cargando...</h1>
+                <!--/ko-->
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h1 class="text-white modal-title fs-5" id="exampleModalLabel">Facultad</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" data-bind="with: RegistroSeleccionado">
+
+                @using (Html.BeginForm("", "", FormMethod.Post, htmlAttributes: new { @id = "formFacultad" }))
+                {
+                    <div class="form-group">
+                        @Html.Label("Codigo")
+                        @*@Html.TextBox("Codigo", "", htmlAttributes: new { @class = "form-control" })*@
+                        <input type="text" data-bind="value: Codigo" class="form-control">
+                        @*@Html.ValidationMessageFor(s => s.Codigo, "", htmlAttributes: new { @class = "text-danger" })*@
+                    </div>
+
+                    <div class="form-group">
+                        @Html.Label("Decripcion")
+                        <input type="text" data-bind="value: Descripcion" class="form-control">
+                        @*@Html.TextBox("Decripcion", "", htmlAttributes: new { @class = "form-control" })*@
+                        @*@Html.ValidationMessageFor(s => s.Descripcion, "", htmlAttributes: new { @class = "text-danger" })*@
+                    </div>
+
+                    if (ViewBag.ErrorMensaje != null)
+                    {
+                        <div class="form-group">
+                            <div class="alert alert-danger" role="alert">
+                                <strong>@ViewBag.ErrorMensaje</strong>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+                <hr>
+                <div class="row">
+                    <div class="col d-grid">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                    <div class="col d-grid">
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @section Scripts{
     <script src="~/Scripts/Creados/FacultadK/IndexFacultad.js"></script>
 }
