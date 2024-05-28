@@ -71,5 +71,29 @@ namespace ComputacionWEB.Controllers
                 return Json(new RequestResult(SystemMessage.ServerError, success: false), JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpPost]
+        public JsonResult Crear(Estudiante estudiante)
+        {
+            try
+            {
+                var errorMensaje = !ModelState.IsValid ? SystemMessage.ValidatePropertyError : estudianteService.ValidarAntesCrear(estudiante);
+
+                if (string.IsNullOrEmpty(errorMensaje))
+                {
+                    if (estudianteService.Crear(estudiante))
+                        return Json(new RequestResult(SystemMessage.CreateSuccessful));
+
+                    else
+                        return Json(new RequestResult(SystemMessage.ServerError, success: false));
+                }
+                else
+                    return Json(new RequestResult(errorMensaje, success: false));
+            }
+            catch (Exception ex)
+            {
+                return Json(new RequestResult(SystemMessage.ServerError, success: false), JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

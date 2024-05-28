@@ -29,11 +29,20 @@ namespace CapaOperaciones
                 Carnet = x.Carnet,
                 Nombre = x.Nombre,
                 Apellido = x.Apellido,
-                Edad = x.Apellido,
+                Edad = x.Edad,
                 CarreraId = x.CarreraId,
 
                 //propiedad extra
-                DescripcionCarrera = x.Carrera.Descripcion
+                DescripcionCarrera = x.Carrera.Descripcion,
+                DetalleEstudianteTelefonos = x.DetalleEstudianteTelefonos.Select(z => new DetalleEstudianteTelefonoDTO
+                {
+                    Id = z.Id,
+                    Numero = z.Numero,
+                    EstudianteId = z.EstudianteId,
+                    OperadoraTelefonoId = z.OperadoraTelefonoId,
+                    DescripcionOperadora = z.OperadoraTelefono.Descripcion
+                }).ToList()
+
             }).ToList();
 
             return query;

@@ -18,5 +18,6 @@ namespace CapaDTO.DTO
         //Propiedades Extras
         public string DescripcionCarrera { get; set; }
         public List<DetalleEstudianteTelefonoDTO> DetalleEstudianteTelefonos { get; set; }
+
     }
 }

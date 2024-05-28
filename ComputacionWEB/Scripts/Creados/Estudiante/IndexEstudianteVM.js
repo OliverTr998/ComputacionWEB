@@ -10,7 +10,11 @@
         
         self.CargandoPeticion = ko.observable(false);
 
+        self.CargandoPeticionCRUD = ko.observable(false);
+
         self.PeticionEnCurso = ko.observable(null);
+
+        self.Accion = ko.observable("");
 
         self.EstudianteM = ko.observable(new EstudianteVM());
 
@@ -25,6 +29,7 @@
         self.ShowModal = (datos, action)=>{
             console.log(datos)
             console.log(action)
+            self.Accion(action);
         };
 
         self.AddTelefono = (dato)=>{
@@ -37,6 +42,12 @@
 
         self.RemoveTelefono = (dato)=>{
             self.EstudianteM().DetalleEstudianteTelefonos.remove(dato);
+        };
+
+        self.CRUD = ()=>{
+            let est = ko.toJS(self.EstudianteM);
+            console.log(est);
+            CRUDEstudiante(est);
         };
         //#endregion
 
@@ -77,6 +88,42 @@
             });
         }
 
+        function CRUDEstudiante(estudiante){
+            let rootUrl = $("#root-url-input").val();
+            let url = rootUrl + "Estudiante/" + self.Accion();
+
+            return $.ajax({
+                url: url,
+                method: "POST",
+                data: { estudiante: estudiante },
+                dataType: "json",
+                beforeSend: (jqXHR, settings) => {  // Peticion en curso
+                    if(self.PeticionEnCurso()){
+                        self.PeticionEnCurso().abort();
+                    }
+                    self.CargandoPeticionCRUD(true);
+                    self.PeticionEnCurso(jqXHR);
+                },
+                success: (respuesta) => {
+                    if(respuesta.Success){
+                        self.EstudianteM(new EstudianteVM());
+                        GetEstudiantes();
+                        alert(respuesta.Message);
+                    }else{
+                        alert(respuesta.Message);
+                    }
+                },
+                complete: (jqXHR, textStatus) => {
+                    self.CargandoPeticionCRUD(false);
+                    self.PeticionEnCurso(null);
+                },
+                error: (jqXHR, textStatus, errorThrown) => {
+                    if(textStatus != "abort"){
+                        alert("Error: Error De Servidor");
+                    }
+                }
+            });
+        }
         //#endregion
     }
 }
