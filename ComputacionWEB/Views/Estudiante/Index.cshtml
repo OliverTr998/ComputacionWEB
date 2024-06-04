@@ -81,8 +81,6 @@
     </div>
 </div>
 
-
-
 <!-- Modal -->
 <div class="modal modal-lg fade" id="ModalCRUD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -93,24 +91,24 @@
             </div>
             <div class="modal-body" _data-bind="with: EstudianteM">
 
-                @using (Html.BeginForm("", "", FormMethod.Post, htmlAttributes: new { @id = "formCRUD" }))
+                @using (Html.BeginForm("Create", "Estudiante", FormMethod.Post, htmlAttributes: new { @id = "CRUDForm" }))
                 {
                     <!--ko with: EstudianteM-->
                     <div class="row">
                         <div class="col-3">
                             @Html.LabelFor(s => s.EstudianteM.Carnet, htmlAttributes: new { @class = "fw-bold" })
                             @Html.TextBoxFor(s => s.EstudianteM.Carnet, htmlAttributes: new { @class = "form-control", data_bind = "value: Carnet" })
-                            @Html.ValidationMessageFor(s => s.EstudianteM.Carnet, "", htmlAttributes: new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(s => s.EstudianteM.Carnet, "", htmlAttributes: new { @class = "text-danger small fw-bold" })
                         </div>
                         <div class="col">
                             @Html.LabelFor(s => s.EstudianteM.Nombre, htmlAttributes: new { @class = "fw-bold" })
                             @Html.TextBoxFor(s => s.EstudianteM.Nombre, htmlAttributes: new { @class = "form-control", data_bind = "value: Nombre" })
-                            @Html.ValidationMessageFor(s => s.EstudianteM.Nombre, "", htmlAttributes: new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(s => s.EstudianteM.Nombre, "", htmlAttributes: new { @class = "text-danger small fw-bold" })
                         </div>
                         <div class="col">
                             @Html.LabelFor(s => s.EstudianteM.Apellido, htmlAttributes: new { @class = "fw-bold" })
                             @Html.TextBoxFor(s => s.EstudianteM.Apellido, htmlAttributes: new { @class = "form-control", data_bind = "value: Apellido" })
-                            @Html.ValidationMessageFor(s => s.EstudianteM.Apellido, "", htmlAttributes: new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(s => s.EstudianteM.Apellido, "", htmlAttributes: new { @class = "text-danger small fw-bold" })
                         </div>
                     </div>
 
@@ -118,7 +116,7 @@
                         <div class="col-3">
                             @Html.LabelFor(s => s.EstudianteM.Edad, htmlAttributes: new { @class = "fw-bold" })
                             @Html.TextBoxFor(s => s.EstudianteM.Edad, htmlAttributes: new { @class = "form-control", @type = "number", data_bind = "value: Edad" })
-                            @Html.ValidationMessageFor(s => s.EstudianteM.Edad, "", htmlAttributes: new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(s => s.EstudianteM.Edad, "", htmlAttributes: new { @class = "text-danger small fw-bold" })
                         </div>
                         <div class="col">
                             @Html.LabelFor(s => s.EstudianteM.CarreraId, htmlAttributes: new { @class = "fw-bold" })
@@ -131,7 +129,7 @@
                                     data_bind = "value: CarreraId"
                                 }
                             )
-                            @Html.ValidationMessageFor(s => s.EstudianteM.CarreraId, "", htmlAttributes: new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(s => s.EstudianteM.CarreraId, "", htmlAttributes: new { @class = "text-danger small fw-bold" })
                         </div>
                     </div>
                     <!--/ko-->
