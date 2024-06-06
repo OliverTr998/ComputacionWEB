@@ -1,8 +1,10 @@
 ﻿using CapaDato.Models;
 using CapaDTO.DTO;
+using CapaDTO.ViewModel;
 using CapaOperaciones;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +48,21 @@ namespace CapaOperaciones
             }).ToList();
 
             return query;
+        }
+
+        public List<EstudianteDTO> GetEstudiantesFilter(FiltrosEstudianteVM viewModel)
+        {
+            var paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@Carnet", string.IsNullOrEmpty(viewModel.Carnet) ? DBNull.Value : (object)viewModel.Carnet));
+            paramList.Add(new SqlParameter("@Nombre", string.IsNullOrEmpty(viewModel.Nombre) ? DBNull.Value : (object)viewModel.Nombre));
+            paramList.Add(new SqlParameter("@Apellido", string.IsNullOrEmpty(viewModel.Apellido) ? DBNull.Value : (object)viewModel.Apellido));
+            paramList.Add(new SqlParameter("@Carrera", string.IsNullOrEmpty(viewModel.Carrera) ? DBNull.Value : (object)viewModel.Carrera));
+
+            var paremsName = string.Join(",", paramList.Select(x => x.ParameterName));
+
+            var estudiantes = db.Database.SqlQuery<EstudianteDTO>("[dbo].[GetEstudiantesFilter] " + paremsName, paramList.ToArray()).ToList();
+
+            return estudiantes;
         }
 
         /// <summary>

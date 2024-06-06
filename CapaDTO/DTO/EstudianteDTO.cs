@@ -8,6 +8,11 @@ namespace CapaDTO.DTO
 {
     public class EstudianteDTO
     {
+        public EstudianteDTO()
+        {
+            DetalleEstudianteTelefonos = new List<DetalleEstudianteTelefonoDTO>();
+        }
+
         public int Id { get; set; }
         public string Carnet { get; set; }
         public string Nombre { get; set; }
@@ -17,6 +22,8 @@ namespace CapaDTO.DTO
 
         //Propiedades Extras
         public string DescripcionCarrera { get; set; }
+
+        public string NumerosTelofonos { get; set; }
         public List<DetalleEstudianteTelefonoDTO> DetalleEstudianteTelefonos { get; set; }
 
     }

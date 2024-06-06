@@ -22,4 +22,12 @@ namespace CapaDTO.ViewModel
         public List<CarreraDTO> Carreras { get; set; }
         public List<EstudianteDTO> Estudiantes { get; set; }
     }
+
+    public class FiltrosEstudianteVM
+    {
+        public string Carnet { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Carrera { get; set; }
+    }
 }

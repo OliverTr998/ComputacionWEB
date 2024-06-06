@@ -73,6 +73,21 @@ namespace ComputacionWEB.Controllers
         }
 
         [HttpPost]
+        public JsonResult GetEstudiantesFilter(FiltrosEstudianteVM viewModel)
+        {
+            try
+            {
+                var estudiantes = estudianteService.GetEstudiantesFilter(viewModel);
+
+                return Json(new RequestResult(estudiantes), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new RequestResult(SystemMessage.ServerError, success: false), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        [HttpPost]
         public JsonResult Crear(Estudiante estudiante)
         {
             try

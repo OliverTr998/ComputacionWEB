@@ -206,6 +206,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\Creados\Estudiante\DetalleEstudianteTelefonoVM.js" />
     <Content Include="Scripts\Creados\Estudiante\EstudianteVM.js" />
+    <Content Include="Scripts\Creados\Estudiante\FiltrosEstudianteVM.js" />
     <Content Include="Scripts\Creados\Estudiante\IndexEstudianteVM.js" />
     <Content Include="Scripts\Creados\FacultadK\IndexFacultad.js" />
     <Content Include="Scripts\Externos\Bootstrap\bootstrap.bundle.js" />

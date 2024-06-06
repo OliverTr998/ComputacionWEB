@@ -24,21 +24,21 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row mb-2">
+                <div class="row mb-2" data-bind="with: FiltrosEstudiante">
                     <div class="col">
-                        <input type="text" placeholder="Carnet" class="form-control" _data-bind="value: FiltroNombreFacultad">
+                        <input type="text" placeholder="Carnet" class="form-control" data-bind="value: Carnet">
                     </div>
                     <div class="col">
-                        <input type="text" placeholder="Nombre" class="form-control" _data-bind="value: FiltroNombreFacultad">
+                        <input type="text" placeholder="Nombre" class="form-control" data-bind="value: Nombre">
                     </div>
                     <div class="col">
-                        <input type="text" placeholder="Apellido" class="form-control" _data-bind="value: FiltroNombreFacultad">
+                        <input type="text" placeholder="Apellido" class="form-control" data-bind="value: Apellido">
                     </div>
                     <div class="col">
-                        <input type="text" placeholder="Carrera" class="form-control" _data-bind="value: FiltroNombreFacultad">
+                        <input type="text" placeholder="Carrera" class="form-control" data-bind="value: Carrera">
                     </div>
                     <div class="col-2 d-grid">
-                        <button _data-bind="click: GetFacultadesAPI" class="btn btn-info">Filtrar</button>
+                        <button data-bind="click: $root.GetFilterEstudiante" class="btn btn-info">Filtrar</button>
                     </div>
                 </div>
                 <!--ko ifnot: CargandoPeticion-->
@@ -55,7 +55,8 @@
                         </tr>
                     </thead>
 
-                    <tbody data-bind="foreach: Estudiantes">
+                    <tbody data-bind="foreach: EstudiantesProcedure">
+                        <!--Estudiantes-->
                         <tr>
                             <td class="text-center"><strong data-bind="text: $index()+1"></strong></td>
                             <td data-bind="text: Carnet"></td>
@@ -176,7 +177,7 @@
                                     <tr class="text-center">
                                         <td class="text-center"><strong data-bind="text: $index()+1"></strong></td>
                                         <td data-bind="text: DescripcionOperadora"></td>
-                                        <td  data-bind="text: Numero"></td>
+                                        <td data-bind="text: Numero"></td>
                                         <td class="text-center">
                                             <div class="btn-group">
                                                 <button class="btn btn-sm btn-outline-danger" data-bind="click: $root.RemoveTelefono">Eliminar</button>
@@ -218,6 +219,7 @@
 </div>
 
 @section Scripts{
+    <script src="~/Scripts/Creados/Estudiante/FiltrosEstudianteVM.js"></script>
     <script src="~/Scripts/Creados/Estudiante/DetalleEstudianteTelefonoVM.js"></script>
     <script src="~/Scripts/Creados/Estudiante/EstudianteVM.js"></script>
     <script src="~/Scripts/Creados/Estudiante/IndexEstudianteVM.js"></script>

@@ -6,6 +6,8 @@
         //#region Propiedades principales
         self.Estudiantes = ko.observableArray(data.Estudiantes ? data.Estudiantes.map(x=> new EstudianteVM(x)) : []);
 
+        self.EstudiantesProcedure = ko.observableArray(data.EstudiantesProcedure || []);
+
         self.OperadoraTelefonos = data.OperadoraTelefonos || [];
         
         self.CargandoPeticion = ko.observable(false);
@@ -17,6 +19,8 @@
         self.Accion = ko.observable("");
 
         self.EstudianteM = ko.observable(new EstudianteVM());
+
+        self.FiltrosEstudiante = ko.observable(new FiltrosEstudianteVM());
 
         self.DetalleTelefono = ko.observable(new DetalleEstudianteTelefono());
         //#endregion
@@ -49,6 +53,10 @@
             console.log(est);
             CRUDEstudiante(est);
         };
+
+        self.GetFilterEstudiante = ()=>{
+            GetEstudiantesFilter();
+        };
         //#endregion
 
         //#region Funciones privadas
@@ -72,6 +80,41 @@
                     console.log(respuesta);
                     if(respuesta.Success){
                         self.Estudiantes(respuesta.Record ? respuesta.Record.map(x=> new EstudianteVM(x)) : []);
+                    }else{
+                        alert(respuesta.Message);
+                    }
+                },
+                complete: (jqXHR, textStatus) => {
+                    self.CargandoPeticion(false);
+                    self.PeticionEnCurso(null);
+                },
+                error: (jqXHR, textStatus, errorThrown) => {
+                    if(textStatus != "abort"){
+                        alert("Error: Error De Servidor");
+                    }
+                }
+            });
+        }
+
+        function GetEstudiantesFilter() {
+            let rootUrl = $("#root-url-input").val();
+            let url = rootUrl + "Estudiante/GetEstudiantesFilter";
+            
+            return $.ajax({
+                url: url,
+                method: "POST",
+                data: { viewModel: ko.toJS(self.FiltrosEstudiante) },
+                dataType: "json",
+                beforeSend: (jqXHR, settings) => {  // Peticion en curso
+                    if(self.PeticionEnCurso()){
+                        self.PeticionEnCurso().abort();
+                    }
+                    self.CargandoPeticion(true);
+                    self.PeticionEnCurso(jqXHR);
+                },
+                success: (respuesta) => {
+                    if(respuesta.Success){
+                        self.EstudiantesProcedure(respuesta.Record || []);
                     }else{
                         alert(respuesta.Message);
                     }
