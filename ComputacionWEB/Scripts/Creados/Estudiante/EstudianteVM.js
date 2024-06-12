@@ -23,5 +23,6 @@
             return "NINGUNO";
         });
         
+        self.Numeros = ko.observable(data.NumerosTelofonos || "NIGUNO");
     }
 } 

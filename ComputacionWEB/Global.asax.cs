@@ -1,3 +1,5 @@
+using AutoMapper;
+using ComputacionWEB.AutoMapperProfile;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,7 @@ namespace ComputacionWEB
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Mapper.Initialize(x => x.AddProfile(new MapperComputacionWEB()));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace CapaDTO.DTO
         public string AnioOfertada { get; set; }
         public int FacultadId { get; set; }
 
+        //Popiedad Extra
         public string DescripcionFacultad { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CapaDato.Models;
+﻿using AutoMapper;
+using CapaDato.Models;
 using CapaDTO.DTO;
 using CapaDTO.Utilities;
 using CapaDTO.ViewModel;
@@ -30,7 +31,7 @@ namespace ComputacionWEB.Controllers
         // GET: Estudiante
         public ActionResult Index()
         {
-            var estudiantes = estudianteService.GetEstudiantes();
+            var estudiantes = Mapper.Map<ICollection<EstudianteDTO>>(estudianteService.GetAll()).ToList();
 
             var carreras = carreraService.GetAll().Select(x => new CarreraDTO
             {
@@ -62,7 +63,7 @@ namespace ComputacionWEB.Controllers
         {
             try
             {
-                var estudiantes = estudianteService.GetEstudiantes();
+                var estudiantes = Mapper.Map<ICollection<EstudianteDTO>>(estudianteService.GetAll()).ToList();
 
                 return Json(new RequestResult(estudiantes), JsonRequestBehavior.AllowGet);
             }

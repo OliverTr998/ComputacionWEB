@@ -16,7 +16,10 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
-                        @Html.ActionLink("+ Agregar","Crear", "Facultad", htmlAttributes: new { @class="btn btn-primary"})
+                        @Html.ActionLink("+ Agregar", "Crear", "Facultad", htmlAttributes: new { @class = "btn btn-primary" })
+                        <a class="btn btn-secondary fw-bold" target="_blank" href="@Url.Action("VisualizadorReport.aspx", "ViewReport", new { Reporte = "RptFacultades.rdlc" })">
+                            <i class="fas fa-print"></i> Imprimir
+                        </a>
                     </div>
                 </div>
                 <hr>
