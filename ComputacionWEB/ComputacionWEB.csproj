@@ -378,6 +378,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Informes\RptGrEstudiantesXCarrera.rdlc" />
     <EmbeddedResource Include="Informes\RptCarrera.rdlc" />
     <EmbeddedResource Include="Informes\RptFacultades.rdlc" />
   </ItemGroup>

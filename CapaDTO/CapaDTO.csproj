@@ -50,6 +50,7 @@
     <Compile Include="DTO\EstudianteDTO.cs" />
     <Compile Include="DTO\FacultadDTO.cs" />
     <Compile Include="DTO\OperadoraTelefonoDTO.cs" />
+    <Compile Include="DTO\RptGrEstudiantesXCarreraDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\RequestResult.cs" />
     <Compile Include="Utilities\SystemMessage.cs" />

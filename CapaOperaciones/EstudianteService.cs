@@ -65,6 +65,13 @@ namespace CapaOperaciones
             return estudiantes;
         }
 
+        public List<RptGrEstudiantesXCarreraDTO> RptGrEstudiantesXCarrera()
+        {
+            var estudiantes = db.Database.SqlQuery<RptGrEstudiantesXCarreraDTO>("[dbo].[RptGrEstudiantesXCarrera]").ToList();
+
+            return estudiantes;
+        }
+
         /// <summary>
         /// Validaciones antes de crear un nuevo registro
         /// </summary>

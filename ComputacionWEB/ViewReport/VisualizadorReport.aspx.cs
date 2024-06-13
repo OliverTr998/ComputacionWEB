@@ -18,12 +18,14 @@ namespace ComputacionWEB.ViewReport
         private ComputacionContext db;
         private FacultadService facultadService;
         private CarreraService carreraService;
+        private EstudianteService estudianteService;
 
         public VisualizadorReport()
         {
             db = new ComputacionContext();
             facultadService = new FacultadService(db);
             carreraService = new CarreraService(db);
+            estudianteService = new EstudianteService(db);
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -56,6 +58,14 @@ namespace ComputacionWEB.ViewReport
                     {
                         var carreras = Mapper.Map<ICollection<CarreraDTO>>(carreraService.GetAll().ToList());
                         var conjuntoDatos = new ReportDataSource("Data", carreras);
+                        ReportView.LocalReport.DataSources.Add(conjuntoDatos);
+                    }
+                    break;
+
+                case "RptGrEstudiantesXCarrera.rdlc":
+                    {
+                        var estudiante = estudianteService.RptGrEstudiantesXCarrera();
+                        var conjuntoDatos = new ReportDataSource("Data", estudiante);
                         ReportView.LocalReport.DataSources.Add(conjuntoDatos);
                     }
                     break;
