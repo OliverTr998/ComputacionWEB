@@ -204,6 +204,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OperadoraTelefonoController.cs" />
+    <Compile Include="DataSources\DataSetInformes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetInformes.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSources\InformesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -281,6 +286,17 @@
     <Content Include="Content\Externos\Bootstrsap\bootstrap-grid.css.map" />
     <Content Include="DataSources\InformesDataSet.xsc">
       <DependentUpon>InformesDataSet.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSources\DataSetInformes.xsc">
+      <DependentUpon>DataSetInformes.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSources\DataSetInformes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetInformes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSources\DataSetInformes.xss">
+      <DependentUpon>DataSetInformes.xsd</DependentUpon>
     </Content>
     <None Include="DataSources\InformesDataSet.xsd">
       <SubType>Designer</SubType>
@@ -378,9 +394,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Informes\RptEstudiantes.rdlc" />
     <EmbeddedResource Include="Informes\RptGrEstudiantesXCarrera.rdlc" />
     <EmbeddedResource Include="Informes\RptCarrera.rdlc" />
     <EmbeddedResource Include="Informes\RptFacultades.rdlc" />
+    <EmbeddedResource Include="Informes\RptTotalTelefonoXFacultad.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDato\CapaDato.csproj">

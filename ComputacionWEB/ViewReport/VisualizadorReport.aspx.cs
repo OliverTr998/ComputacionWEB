@@ -5,6 +5,7 @@ using CapaOperaciones;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -66,6 +67,22 @@ namespace ComputacionWEB.ViewReport
                     {
                         var estudiante = estudianteService.RptGrEstudiantesXCarrera();
                         var conjuntoDatos = new ReportDataSource("Data", estudiante);
+                        ReportView.LocalReport.DataSources.Add(conjuntoDatos);
+                    }
+                    break;
+
+                case "RptEstudiantes.rdlc":
+                    {
+                        var estudiantes = Mapper.Map <ICollection<EstudianteDTO>>(estudianteService.GetAll());
+                        var conjuntoDatos = new ReportDataSource("Data", estudiantes);
+                        ReportView.LocalReport.DataSources.Add(conjuntoDatos);
+                    }
+                    break;
+
+                case "RptTotalTelefonoXFacultad.rdlc":
+                    {
+                        var facultad = facultadService.RptTotalTelefonoXFacultad();
+                        var conjuntoDatos = new ReportDataSource("Data", facultad);
                         ReportView.LocalReport.DataSources.Add(conjuntoDatos);
                     }
                     break;

@@ -1,4 +1,5 @@
 ﻿using CapaDato.Models;
+using CapaDTO.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,13 @@ namespace CapaOperaciones
                 this.db = new ComputacionContext();
             else
                 this.db = db;
+        }
+
+        public List<RptTotalTelefonoXFacultadDTO> RptTotalTelefonoXFacultad()
+        {
+            var facultad = db.Database.SqlQuery<RptTotalTelefonoXFacultadDTO>("[dbo].[RptTotalTelefonoXFacultad]").ToList();
+
+            return facultad;
         }
 
         #region Valiciones del CRUD

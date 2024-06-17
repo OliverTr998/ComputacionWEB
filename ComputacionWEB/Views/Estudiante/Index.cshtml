@@ -27,6 +27,11 @@
                             <i class="fas fa-print"></i> Imprimir
                         </a>
                     </div>
+                    <div class="col-2 d-grid">
+                        <a class="btn btn-secondary fw-bold" target="_blank" href="@Url.Action("VisualizadorReport.aspx", "ViewReport", new { Reporte = "RptEstudiantes.rdlc" })">
+                            <i class="fas fa-print"></i> Imprimir Lista Estudiante
+                        </a>
+                    </div>
                 </div>
                 <hr>
                 <div class="row mb-2" data-bind="with: FiltrosEstudiante">
