@@ -23,6 +23,17 @@
                     <li>@Html.ActionLink("Carrera", "Index", "Carrera", new { id = "" }, htmlAttributes: new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Estudiante", "Index", "Estudiante", new { id = "" }, htmlAttributes: new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Operadora", "Index", "OperadoraTelefono", new { id = "" }, htmlAttributes: new { @class = "nav-link" })</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Reporteria
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a target="_blank" class="dropdown-item" href="@Url.Action("VisualizadorReport.aspx", "ViewReport", new { Reporte = "RptEstudiantes.rdlc" })">Lista Estudiantes</a></li>
+                            <li><a target="_blank" class="dropdown-item" href="@Url.Action("VisualizadorReport.aspx", "ViewReport", new { Reporte = "RptGrEstudiantesXCarrera.rdlc" })">Total Estudiantes - Carreras | Grafico</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="@Url.Action("RptEstudianteFacultad","Reporte")">Imprimir Estudiantes X Facultad</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

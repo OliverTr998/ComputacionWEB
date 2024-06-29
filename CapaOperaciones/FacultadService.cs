@@ -1,7 +1,9 @@
 ﻿using CapaDato.Models;
 using CapaDTO.DTO;
+using CapaDTO.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +27,18 @@ namespace CapaOperaciones
             var facultad = db.Database.SqlQuery<RptTotalTelefonoXFacultadDTO>("[dbo].[RptTotalTelefonoXFacultad]").ToList();
 
             return facultad;
+        }
+
+        public List<EstudianteDTO> RptEstudianteFacultad(int FacultadId)
+        {
+            var paramList = new List<SqlParameter>();
+            paramList.Add(new SqlParameter("@FacultadId", (object)FacultadId));
+
+            var paremsName = string.Join(",", paramList.Select(x => x.ParameterName));
+
+            var estudiantes = db.Database.SqlQuery<EstudianteDTO>("[dbo].[RptEstudianteFacultad] " + paremsName, paramList.ToArray()).ToList();
+
+            return estudiantes;
         }
 
         #region Valiciones del CRUD

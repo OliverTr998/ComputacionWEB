@@ -1,0 +1,46 @@
+﻿@model CapaDTO.ViewModel.RptEstudianteFacultadVM
+
+@{
+    ViewBag.Title = "RptEstudianteFaculta";
+}
+
+
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card border-info">
+            <div class="card-header bg-info">
+                <h4 class="text-center text-white"><strong>Reporte Estudiantes Por Facultad</strong></h4>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    @using (Html.BeginForm("VisualizadorReport.aspx", "ViewReport", FormMethod.Get, htmlAttributes: new { @id = "Rpt", @target = "_blank" }))
+                    {
+                        @Html.Hidden("Reporte", "RptEstudianteFacultad.rdlc")
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                @Html.LabelFor(m => m.FacultadId, htmlAttributes: new { @class = "fw-bold" })
+                                @Html.DropDownListFor(m => m.FacultadId,
+                                selectList: ViewBag.Facultades as SelectList,
+                                optionLabel: "-- Seleccione --",
+                                htmlAttributes: new
+                                {
+                                    @class = "form-select"
+                                })
+
+                                @Html.ValidationMessageFor(s => s.FacultadId, "", htmlAttributes: new { @class = "text-danger fw-bold" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-3 d-grid">
+                                <button type="submit" class="btn btn-secondary">Imprimir</button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,6 +27,7 @@ namespace ComputacionWEB
             //          "~/Scripts/Externos/Bootstrap/bootstrap.min.js"));
 
             bundles.Add(new Bundle("~/bundles/bootstrapJS").Include(
+                        "~/Scripts/Externos/Popper/popper.min.js",
                        "~/Scripts/Externos/Bootstrap/bootstrap.js"
                        ));
 

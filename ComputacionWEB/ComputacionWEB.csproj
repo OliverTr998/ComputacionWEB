@@ -204,6 +204,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OperadoraTelefonoController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="DataSources\DataSetInformes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -318,6 +319,7 @@
     <Content Include="Scripts\Externos\Jquery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\Externos\Knockout\knockout-3.5.1.debug.js" />
     <Content Include="Scripts\Externos\Knockout\knockout-3.5.1.js" />
+    <Content Include="Scripts\Externos\Popper\popper.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
@@ -380,6 +382,7 @@
     <Content Include="Views\FacultadK\Index.cshtml" />
     <Content Include="Views\Estudiante\Index.cshtml" />
     <Content Include="Views\Estudiante\Crear.cshtml" />
+    <Content Include="Views\Reporte\RptEstudianteFacultad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -394,6 +397,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Informes\RptEstudianteFacultad.rdlc" />
     <EmbeddedResource Include="Informes\RptEstudiantes.rdlc" />
     <EmbeddedResource Include="Informes\RptGrEstudiantesXCarrera.rdlc" />
     <EmbeddedResource Include="Informes\RptCarrera.rdlc" />

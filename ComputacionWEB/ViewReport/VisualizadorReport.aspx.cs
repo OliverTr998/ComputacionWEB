@@ -87,6 +87,14 @@ namespace ComputacionWEB.ViewReport
                     }
                     break;
 
+                case "RptEstudianteFacultad.rdlc":
+                    {
+                        var facultadId = int.Parse(Request.Params["FacultadId"]);
+                        var estudiantesXFacultad = facultadService.RptEstudianteFacultad(facultadId);
+                        var conjuntoDatos = new ReportDataSource("Data", estudiantesXFacultad);
+                        ReportView.LocalReport.DataSources.Add(conjuntoDatos);
+                    }
+                    break;
                 default: 
                     break;
             }

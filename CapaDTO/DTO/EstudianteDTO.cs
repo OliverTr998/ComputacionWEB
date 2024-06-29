@@ -24,6 +24,10 @@ namespace CapaDTO.DTO
         public string DescripcionCarrera { get; set; }
 
         public string NumerosTelofonos { get; set; }
+
+        //Propiedades para el reporte de facultad
+        public int FacultadId { get; set; }
+        public string Facultad { get; set; }
         public List<DetalleEstudianteTelefonoDTO> DetalleEstudianteTelefonos { get; set; }
 
     }
